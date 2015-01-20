@@ -15,22 +15,22 @@
 + (instancetype)sharedSecretary;
 
 #pragma mark - Instace Methods
-- (void)createInbox:(NSString *)identifier notifications:(NSArray *)notifications;
+- (void)createInbox:(NSString *)identifier notifications:(NSArray *)notifications __attribute__((nonnull (1, 2)));;;
 
-- (void)removeInbox:(NSString *)identifer;
+- (void)removeInbox:(NSString *)identifer __attribute__((nonnull (1)));
 
-- (void)addNotification:(DMMSecretaryNotification *)notification toInbox:(NSString *)inboxIdentifer;
+- (void)addNotification:(DMMSecretaryNotification *)notification toInbox:(NSString *)inboxIdentifer __attribute__((nonnull (1, 2)));
 
-- (NSArray *)notificationsObservedByInbox:(NSString *)inboxIdentifier;
+- (NSArray *)notificationsObservedByInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
-- (NSArray *)notificationsForInbox:(NSString *)inboxIdentifier;
+- (NSArray *)notificationsForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
-- (void)removeNotification:(NSString *)notificationIdentifier fromInbox:(NSString *)inboxIdentifier;
+- (void)removeNotification:(NSString *)notificationIdentifier fromInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1, 2)));
 
-- (void)startHoldMessagesForInbox:(NSString *)inboxIdentifier;
+- (void)startHoldMessagesForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
-- (void)stopHoldingMessagesForInbox:(NSString *)inboxIdentifier;
+- (void)stopHoldingMessagesForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
-- (void)sendHeldNotificationsForInbox:(NSString *)inboxIdentifier;
+- (void)sendHeldNotificationsForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
 @end

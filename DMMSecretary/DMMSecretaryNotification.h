@@ -14,6 +14,6 @@
 @property (nonatomic) SEL selector;
 @property (weak, nonatomic) id object;
 
-+ (instancetype)secretaryNotificationWithObserver:(id)observer selector:(SEL)selector name:(NSString *)name object:(id)object;
++ (instancetype)secretaryNotificationWithObserver:(id)observer selector:(SEL)selector name:(NSString *)name object:(id)object __attribute__((nonnull (1, 2, 3)));
 
 @end

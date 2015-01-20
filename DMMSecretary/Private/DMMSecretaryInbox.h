@@ -16,12 +16,14 @@
 @property (nonatomic, getter=isHoldingMessages) BOOL holdMessages;
 
 #pragma mark - Class Methods
-+ (instancetype)inboxWithIdentifier:(NSString *)identifer;
++ (instancetype)inboxWithIdentifier:(NSString *)identifer __attribute__((nonnull (1)));
 
 #pragma mark - Instance Methods
-- (void)addNotificationToNotifications:(DMMSecretaryNotification *)notification;
+- (void)addNotificationToNotifications:(DMMSecretaryNotification *)notification __attribute__((nonnull (1)));
 
-- (void)removeNotificationFromNotifications:(NSString *)notificationIdentifier;
+- (void)removeNotificationFromNotifications:(NSString *)notificationIdentifier __attribute__((nonnull (1)));
 
 - (void)sendHeldNotifications;
+
+- (void)clearHeldNotifications;
 @end

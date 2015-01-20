@@ -90,6 +90,10 @@
     }
 }
 
+- (void)clearHeldNotifications {
+    [self.heldNotifications removeAllObjects];
+}
+
 #pragma mark - notificationReceived
 - (void)notificationReceived:(NSNotification *)notification {
     if (self.isHoldingMessages) {
