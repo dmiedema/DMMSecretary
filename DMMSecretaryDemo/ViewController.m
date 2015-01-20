@@ -7,21 +7,63 @@
 //
 
 #import "ViewController.h"
+#import "DMMSecretary.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *sendNotification1Button;
+@property (weak, nonatomic) IBOutlet UIButton *sendNotification2Button;
+@property (weak, nonatomic) IBOutlet UIButton *sendNotification3Button;
+@property (weak, nonatomic) IBOutlet UIButton *sendNotification4Button;
+@property (weak, nonatomic) IBOutlet UISwitch *holdSwitch;
 
+@property (weak, nonatomic) IBOutlet UILabel *outputLabel;
 @end
+
+NSString * const InboxIdentifer = @"ViewController";
+NSString * const NotificationName1 = @"SecretaryNotificationType1";
+NSString * const NotificationName2 = @"SecretaryNotificationType2";
+NSString * const NotificationName3 = @"SecretaryNotificationType3";
+NSString * const NotificationName4 = @"SecretaryNotificationType4";
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    DMMSecretaryNotification *notification1 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName1 object:nil];
+    DMMSecretaryNotification *notification2 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName2 object:nil];
+    DMMSecretaryNotification *notification3 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName3 object:nil];
+    DMMSecretaryNotification *notification4 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName4 object:nil];
+    
+    [[DMMSecretary sharedSecretary] createInbox:InboxIdentifer notifications:@[notification1, notification2, notification3, notification4]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)holdSwitchToggled:(UISwitch *)sender {
+    if (sender.on) {
+        [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:InboxIdentifer];
+    } else {
+        NSLog(@"%@", [[DMMSecretary sharedSecretary] notificationsObservedInbox:InboxIdentifer]);
+        [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:InboxIdentifer];
+        [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:InboxIdentifer];
+    }
+    
+}
+- (IBAction)sendNotificationPressed:(UIButton *)sender {
+    NSString *name = NotificationName1;
+    if ([sender isEqual:self.sendNotification1Button]) {
+        name = NotificationName1;
+    } else if ([sender isEqual:self.sendNotification2Button]) {
+        name = NotificationName2;
+    } else if ([sender isEqual:self.sendNotification3Button]) {
+        name = NotificationName3;
+    } else if ([sender isEqual:self.sendNotification4Button]) {
+        name = NotificationName4;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil];
+}
+
+- (void)notificationReceived:(NSNotification *)notification {
+    self.outputLabel.text = [NSString stringWithFormat:@"Notification Recieved - %@ : %@", notification.name, [NSDate date]];
 }
 
 @end
