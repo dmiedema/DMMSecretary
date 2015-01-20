@@ -1,5 +1,5 @@
 language: objective-c
-xcode_project:DMMSecretaryDemo.xcodeproj
+xcode_workspace: DMMSecretaryDemo.xcworkspace
 xcode_scheme: DMMSecretaryDemo
 xcode_sdk:
   - iphonesimulator8.1
