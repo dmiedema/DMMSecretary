@@ -1,6 +1,6 @@
 //
-//  DMMSecretaryDemoTests.m
-//  DMMSecretaryDemoTests
+//  DMMSecretary_Tests.m
+//  DMMSecretaryDemo
 //
 //  Created by Daniel on 1/19/15.
 //  Copyright (c) 2015 Daniel Miedema. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface DMMSecretaryDemoTests : XCTestCase
+@interface DMMSecretary_Tests : XCTestCase
 
 @end
 
-@implementation DMMSecretaryDemoTests
+@implementation DMMSecretary_Tests
 
 - (void)setUp {
     [super setUp];
