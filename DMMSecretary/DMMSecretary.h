@@ -21,7 +21,7 @@
 
 - (void)addNotification:(DMMSecretaryNotification *)notification toInbox:(NSString *)inboxIdentifer;
 
-- (NSArray *)notificationsObservedInbox:(NSString *)inboxIdentifier;
+- (NSArray *)notificationsObservedByInbox:(NSString *)inboxIdentifier;
 
 - (NSArray *)notificationsForInbox:(NSString *)inboxIdentifier;
 

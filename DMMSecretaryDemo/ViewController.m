@@ -41,7 +41,7 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
     if (sender.on) {
         [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:InboxIdentifer];
     } else {
-        NSLog(@"%@", [[DMMSecretary sharedSecretary] notificationsObservedInbox:InboxIdentifer]);
+        NSLog(@"%@", [[DMMSecretary sharedSecretary] notificationsObservedByInbox:InboxIdentifer]);
         [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:InboxIdentifer];
         [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:InboxIdentifer];
     }

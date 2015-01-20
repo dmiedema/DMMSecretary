@@ -53,7 +53,7 @@
     });
 }
 
-- (NSArray *)notificationsObservedInbox:(NSString *)inboxIdentifier {
+- (NSArray *)notificationsObservedByInbox:(NSString *)inboxIdentifier {
     __block NSArray *notifications;
     dispatch_barrier_sync(_secretaryQueue, ^{
         notifications = [self.inboxes[inboxIdentifier] observedNotificationNames];
