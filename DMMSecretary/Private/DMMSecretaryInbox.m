@@ -15,7 +15,10 @@
 @property (strong, nonatomic) NSMutableArray *notificationObservers;
 @end
 
-@implementation DMMSecretaryInbox
+@implementation DMMSecretaryInbox {
+    dispatch_queue_t _inboxQueue;
+}
+
 #pragma mark - Class Methods
 + (instancetype)inboxWithIdentifier:(NSString *)identifer {
     DMMSecretaryInbox *inbox = [[self alloc] init];
@@ -30,6 +33,7 @@
         self.notificationNames     = [NSMutableArray array];
         self.heldNotifications     = [NSMutableArray array];
         self.notificationObservers = [NSMutableArray array];
+        _inboxQueue = dispatch_queue_create("DMMInboxQueue", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
@@ -96,6 +100,22 @@
 }
 
 - (void)forwardNotification:(NSNotification *)notification {
+//    NSArray *notificationObservers = [self.notificationObservers copy];
+//    
+//    for (NSInteger i = 0; i < notificationObservers.count; i++) {
+//        dispatch_async(_inboxQueue, ^{
+//            DMMSecretaryNotification *obj = notificationObservers[i];
+//            if ([obj.name isEqualToString:notification.name]) {
+//                #pragma clang diagnostic push
+//                #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [obj.observer performSelector:obj.selector withObject:notification];
+//                });
+//                #pragma clang diagnostic pop
+//            }
+//        });
+//    }
+    
     [self.notificationObservers enumerateObjectsUsingBlock:^(DMMSecretaryNotification *obj, NSUInteger idx, BOOL *stop) {
         if ([obj.name isEqualToString:notification.name]) {
 #pragma clang diagnostic push

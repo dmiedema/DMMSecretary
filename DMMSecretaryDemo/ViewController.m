@@ -16,7 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendNotification4Button;
 @property (weak, nonatomic) IBOutlet UISwitch *holdSwitch;
 
+@property (weak, nonatomic) IBOutlet UILabel *totalCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
+
+@property (nonatomic) NSInteger totalNumberOfNotificationsReceived;
 @end
 
 NSString * const InboxIdentifer = @"ViewController";
@@ -29,6 +32,8 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.totalNumberOfNotificationsReceived = 0;
+    
     DMMSecretaryNotification *notification1 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName1 object:nil];
     DMMSecretaryNotification *notification2 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName2 object:nil];
     DMMSecretaryNotification *notification3 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName3 object:nil];
@@ -42,6 +47,7 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
         [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:InboxIdentifer];
     } else {
         NSLog(@"%@", [[DMMSecretary sharedSecretary] notificationsObservedByInbox:InboxIdentifer]);
+        NSLog(@"Held - %@", [[DMMSecretary sharedSecretary] notificationsForInbox:InboxIdentifer]);
         [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:InboxIdentifer];
         [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:InboxIdentifer];
     }
@@ -63,6 +69,8 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
 }
 
 - (void)notificationReceived:(NSNotification *)notification {
+    self.totalNumberOfNotificationsReceived++;
+    self.totalCountLabel.text = [NSString stringWithFormat:@"%li", self.totalNumberOfNotificationsReceived];
     self.outputLabel.text = [NSString stringWithFormat:@"Notification Recieved - %@ : %@", notification.name, [NSDate date]];
 }
 

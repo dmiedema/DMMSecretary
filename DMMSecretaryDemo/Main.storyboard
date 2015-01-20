@@ -61,7 +61,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLj-XX-cku">
-                                <rect key="frame" x="234.5" y="58" width="131" height="30"/>
+                                <rect key="frame" x="234" y="58" width="131" height="30"/>
                                 <state key="normal" title="Send Notification 2">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -87,6 +87,12 @@
                                     <action selector="sendNotificationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z5T-f3-B0Q"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfJ-st-ywd" userLabel="Total Count Label">
+                                <rect key="frame" x="36" y="532.5" width="528" height="19.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -95,6 +101,7 @@
                             <constraint firstItem="WeC-Mv-P6R" firstAttribute="top" secondItem="98W-Qk-iz3" secondAttribute="bottom" constant="8" id="9xX-Mu-RS3"/>
                             <constraint firstItem="b4R-fg-XX9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="I7L-od-h2M"/>
                             <constraint firstItem="rLj-XX-cku" firstAttribute="top" secondItem="b4R-fg-XX9" secondAttribute="bottom" constant="8" id="IzP-BN-e3k"/>
+                            <constraint firstItem="CfJ-st-ywd" firstAttribute="leading" secondItem="On3-FE-wXi" secondAttribute="leading" id="LTE-GH-y35"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="On3-FE-wXi" secondAttribute="bottom" constant="20" id="Q3o-PG-AMN"/>
                             <constraint firstItem="WeC-Mv-P6R" firstAttribute="top" secondItem="98W-Qk-iz3" secondAttribute="bottom" constant="8" id="XQS-x9-WVw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="On3-FE-wXi" secondAttribute="trailing" constant="20" id="ZTS-Ci-BVb"/>
@@ -103,7 +110,9 @@
                             <constraint firstAttribute="centerX" secondItem="b4R-fg-XX9" secondAttribute="centerX" id="hEb-No-kHu"/>
                             <constraint firstItem="On3-FE-wXi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="i2o-96-sh0"/>
                             <constraint firstItem="98W-Qk-iz3" firstAttribute="top" secondItem="rLj-XX-cku" secondAttribute="bottom" constant="8" id="jEq-Dg-hKS"/>
+                            <constraint firstItem="On3-FE-wXi" firstAttribute="top" secondItem="CfJ-st-ywd" secondAttribute="bottom" constant="8" id="jq5-Oc-giM"/>
                             <constraint firstAttribute="centerX" secondItem="98W-Qk-iz3" secondAttribute="centerX" id="jso-ch-enS"/>
+                            <constraint firstItem="CfJ-st-ywd" firstAttribute="trailing" secondItem="On3-FE-wXi" secondAttribute="trailing" id="kQ9-wW-liY"/>
                             <constraint firstItem="1Q2-NT-akM" firstAttribute="top" secondItem="WeC-Mv-P6R" secondAttribute="bottom" constant="8" id="mEC-wk-qVm"/>
                             <constraint firstAttribute="centerX" secondItem="On3-FE-wXi" secondAttribute="centerX" id="ucr-IF-B4n"/>
                             <constraint firstAttribute="centerX" secondItem="WeC-Mv-P6R" secondAttribute="centerX" id="w46-AZ-ZP0"/>
@@ -122,6 +131,7 @@
                         <outlet property="sendNotification2Button" destination="rLj-XX-cku" id="l88-wJ-tad"/>
                         <outlet property="sendNotification3Button" destination="98W-Qk-iz3" id="Grx-od-T7N"/>
                         <outlet property="sendNotification4Button" destination="WeC-Mv-P6R" id="1cO-1L-6mD"/>
+                        <outlet property="totalCountLabel" destination="CfJ-st-ywd" id="8uw-Na-NaO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
