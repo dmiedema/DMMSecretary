@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29E71ACDD92ADB5DA397B9FF /* libPods-DMMSecretaryDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60471E2CFBD45EC1B3F3DA62 /* libPods-DMMSecretaryDemoTests.a */; };
 		5432518F1A6DEB8300A9FA53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5432518E1A6DEB8300A9FA53 /* main.m */; };
 		543251921A6DEB8300A9FA53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 543251911A6DEB8300A9FA53 /* AppDelegate.m */; };
 		5432519A1A6DEB8300A9FA53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543251991A6DEB8300A9FA53 /* Images.xcassets */; };
@@ -49,6 +50,9 @@
 		543251BA1A6DECCB00A9FA53 /* DMMSecretaryInbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMMSecretaryInbox.m; sourceTree = "<group>"; };
 		543251BE1A6DECE100A9FA53 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		543251C01A6DED0100A9FA53 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		60471E2CFBD45EC1B3F3DA62 /* libPods-DMMSecretaryDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DMMSecretaryDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		72CE97876C68D4040FCDB83C /* Pods-DMMSecretaryDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DMMSecretaryDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DMMSecretaryDemoTests/Pods-DMMSecretaryDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		F481CC4AE068256E4FA6DD95 /* Pods-DMMSecretaryDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DMMSecretaryDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DMMSecretaryDemoTests/Pods-DMMSecretaryDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E71ACDD92ADB5DA397B9FF /* libPods-DMMSecretaryDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,8 @@
 				5432518B1A6DEB8300A9FA53 /* DMMSecretaryDemo */,
 				543251A51A6DEB8400A9FA53 /* DMMSecretaryDemoTests */,
 				5432518A1A6DEB8300A9FA53 /* Products */,
+				D24FA41263CD8FD1C26356CB /* Pods */,
+				C0449096DA7CA5137F8B5E1B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +157,23 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		C0449096DA7CA5137F8B5E1B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60471E2CFBD45EC1B3F3DA62 /* libPods-DMMSecretaryDemoTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D24FA41263CD8FD1C26356CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F481CC4AE068256E4FA6DD95 /* Pods-DMMSecretaryDemoTests.debug.xcconfig */,
+				72CE97876C68D4040FCDB83C /* Pods-DMMSecretaryDemoTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 543251AF1A6DEB8400A9FA53 /* Build configuration list for PBXNativeTarget "DMMSecretaryDemoTests" */;
 			buildPhases = (
+				958678FBBB5E64C7A216DC03 /* Check Pods Manifest.lock */,
 				5432519E1A6DEB8300A9FA53 /* Sources */,
 				5432519F1A6DEB8300A9FA53 /* Frameworks */,
 				543251A01A6DEB8300A9FA53 /* Resources */,
+				2E8F9F6E530FCCCE212B2081 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -244,6 +270,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E8F9F6E530FCCCE212B2081 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DMMSecretaryDemoTests/Pods-DMMSecretaryDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		958678FBBB5E64C7A216DC03 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		543251851A6DEB8300A9FA53 /* Sources */ = {
@@ -389,6 +448,7 @@
 		};
 		543251B01A6DEB8400A9FA53 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F481CC4AE068256E4FA6DD95 /* Pods-DMMSecretaryDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -408,6 +468,7 @@
 		};
 		543251B11A6DEB8400A9FA53 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72CE97876C68D4040FCDB83C /* Pods-DMMSecretaryDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
