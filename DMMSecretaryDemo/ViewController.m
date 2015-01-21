@@ -70,7 +70,7 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
 
 - (void)notificationReceived:(NSNotification *)notification {
     self.totalNumberOfNotificationsReceived++;
-    self.totalCountLabel.text = [NSString stringWithFormat:@"%li", self.totalNumberOfNotificationsReceived];
+    self.totalCountLabel.text = [NSString stringWithFormat:@"%li", (long)self.totalNumberOfNotificationsReceived];
     self.outputLabel.text = [NSString stringWithFormat:@"Notification Recieved - %@ : %@", notification.name, [NSDate date]];
 }
 
