@@ -8,33 +8,47 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "TestObject.h"
+#import "DMMSecretaryNotification.h"
+
 
 @interface DMMSecretaryNotification_Tests : XCTestCase
-
+@property (strong, nonatomic) TestObject *obj;
 @end
 
 @implementation DMMSecretaryNotification_Tests
 
+- (void)testObserverSetCorrectly {
+    DMMSecretaryNotification *notifcation = [DMMSecretaryNotification secretaryNotificationWithObserver:self.obj selector:@selector(testMethod) name:TestNotification object:nil];
+    
+    XCTAssertEqualObjects(self.obj, notifcation.observer, @"notificatoin.observer should equal self.obj. %@ - %@", self.obj, notifcation.observer);
+}
+
+- (void)testConvienceCreation {
+    DMMSecretaryNotification *notifcation = [DMMSecretaryNotification secretaryNotificationWithObserver:self.obj selector:@selector(testMethod) name:TestNotification object:nil];
+    
+    XCTAssertEqualObjects(self.obj, notifcation.observer, @"notificatoin.observer should equal self.obj. %@ - %@", self.obj, notifcation.observer);
+    XCTAssertTrue(@selector(testMethod) == notifcation.selector, @"Selectors should be equal");
+    XCTAssertTrue([TestNotification isEqualToString:notifcation.name], @"names should be identical");
+    XCTAssertNil(notifcation.object, @"object should equal what was passed in");
+}
+
+- (void)testFailWithNilObserver {
+    // Because the compiler gets mad when we pass `nil` in
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+    XCTAssertThrows([DMMSecretaryNotification secretaryNotificationWithObserver:nil selector:@selector(testMethod) name:TestNotification object:nil], @"Creating with nil observers should throw an error");
+#pragma clang diagnostic pop
+}
+
+
+#pragma mark - Setup
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.obj = [TestObject new];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
-
 @end

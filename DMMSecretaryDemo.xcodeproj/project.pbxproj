@@ -20,6 +20,7 @@
 		543251C31A6E033200A9FA53 /* DMMSecretary_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 543251C21A6E033200A9FA53 /* DMMSecretary_Tests.m */; };
 		543251C51A6E034200A9FA53 /* DMMSecretaryNotification_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 543251C41A6E034200A9FA53 /* DMMSecretaryNotification_Tests.m */; };
 		543251C71A6E035400A9FA53 /* DMMSecretaryInbox_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 543251C61A6E035400A9FA53 /* DMMSecretaryInbox_Tests.m */; };
+		543251CA1A6F4FCC00A9FA53 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 543251C91A6F4FCC00A9FA53 /* TestObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		543251C21A6E033200A9FA53 /* DMMSecretary_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMMSecretary_Tests.m; sourceTree = "<group>"; };
 		543251C41A6E034200A9FA53 /* DMMSecretaryNotification_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMMSecretaryNotification_Tests.m; sourceTree = "<group>"; };
 		543251C61A6E035400A9FA53 /* DMMSecretaryInbox_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMMSecretaryInbox_Tests.m; sourceTree = "<group>"; };
+		543251C81A6F4FCC00A9FA53 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		543251C91A6F4FCC00A9FA53 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
 		60471E2CFBD45EC1B3F3DA62 /* libPods-DMMSecretaryDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DMMSecretaryDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CE97876C68D4040FCDB83C /* Pods-DMMSecretaryDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DMMSecretaryDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DMMSecretaryDemoTests/Pods-DMMSecretaryDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F481CC4AE068256E4FA6DD95 /* Pods-DMMSecretaryDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DMMSecretaryDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DMMSecretaryDemoTests/Pods-DMMSecretaryDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				543251C21A6E033200A9FA53 /* DMMSecretary_Tests.m */,
 				543251C41A6E034200A9FA53 /* DMMSecretaryNotification_Tests.m */,
 				543251C61A6E035400A9FA53 /* DMMSecretaryInbox_Tests.m */,
+				543251C81A6F4FCC00A9FA53 /* TestObject.h */,
+				543251C91A6F4FCC00A9FA53 /* TestObject.m */,
 			);
 			path = DMMSecretaryDemoTests;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 			files = (
 				543251C51A6E034200A9FA53 /* DMMSecretaryNotification_Tests.m in Sources */,
 				543251C71A6E035400A9FA53 /* DMMSecretaryInbox_Tests.m in Sources */,
+				543251CA1A6F4FCC00A9FA53 /* TestObject.m in Sources */,
 				543251C31A6E033200A9FA53 /* DMMSecretary_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
