@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DMMSecretary"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "When you just need someone to get handle notifications for you"
 
   s.description  = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.author             = { "Daniel Miedema" => "danielmiedema@me.com" }
   s.social_media_url   = "http://twitter.com/no_good_ones"
 
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "7.0"
 
   s.source       = { :git => "https://github.com/dmiedema/DMMSecretary.git", :tag => "0.0.1" }
 
