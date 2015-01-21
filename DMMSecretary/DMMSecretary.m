@@ -78,7 +78,7 @@
     });
 }
 
-- (void)startHoldMessagesForInbox:(NSString *)inboxIdentifier {
+- (void)startHoldingMessagesForInbox:(NSString *)inboxIdentifier {
     dispatch_barrier_sync(_secretaryQueue, ^{
         DMMSecretaryInbox *inbox = self.inboxes[inboxIdentifier];
         inbox.holdMessages = YES;

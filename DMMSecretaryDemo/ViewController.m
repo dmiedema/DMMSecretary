@@ -44,7 +44,7 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
 
 - (IBAction)holdSwitchToggled:(UISwitch *)sender {
     if (sender.on) {
-        [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:InboxIdentifer];
+        [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:InboxIdentifer];
     } else {
         NSLog(@"%@", [[DMMSecretary sharedSecretary] notificationsObservedByInbox:InboxIdentifer]);
         NSLog(@"Held - %@", [[DMMSecretary sharedSecretary] notificationsForInbox:InboxIdentifer]);

@@ -56,7 +56,7 @@
     
     [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:TestInbox];
+    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
@@ -72,7 +72,7 @@
     
     [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:TestInbox];
+    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
@@ -86,7 +86,7 @@
     
     [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:TestInbox];
+    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
@@ -107,7 +107,7 @@
     
     [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldMessagesForInbox:TestInbox];
+    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     

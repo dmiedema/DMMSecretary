@@ -80,7 +80,7 @@
  
  @param inboxIdentifer inbox to start holding messages for
  */
-- (void)startHoldMessagesForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
+- (void)startHoldingMessagesForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
 /*!
  Ask the secretary to stop holding messages.
