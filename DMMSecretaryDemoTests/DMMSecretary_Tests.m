@@ -120,6 +120,15 @@
     XCTAssertNoThrow([mock verify], @"mock should have received %@ after turning off holding", TestNotification);
 }
 
+- (void)testCreatingExistingInbox {
+    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
+    
+    [[DMMSecretary sharedSecretary] createInbox:TestInbox notifications:@[]];
+    
+    NSArray *observed = [[DMMSecretary sharedSecretary] notificationsObservedByInbox:TestInbox];
+    XCTAssertTrue(observed.count > 0, @"Creating an inbox that already exists should not overwrite existing inbox");
+}
+
 #pragma mark - Setup
 - (void)setUp {
     self.obj = [TestObject new];

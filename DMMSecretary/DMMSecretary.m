@@ -30,7 +30,10 @@
 
 #pragma mark - Instance Methods
 - (void)createInbox:(NSString *)identifier notifications:(NSArray *)notifications {
+    if (self.inboxes[identifier]) { return; }
+    
     DMMSecretaryInbox *newInbox = [DMMSecretaryInbox inboxWithIdentifier:identifier];
+    if (!notifications) { notifications = @[]; }
     for (DMMSecretaryNotification *notification in notifications) {
         [newInbox addNotificationToNotifications:notification];
     }
@@ -97,6 +100,16 @@
 
 #pragma mark - -- Private --
 
+#pragma mark - Getters
+- (NSMutableDictionary *)inboxes {
+    __block NSMutableDictionary *dict;
+    dispatch_barrier_sync(_secretaryQueue, ^{
+        dict = _inboxes;
+    });
+    return _inboxes;
+}
+
+#pragma mark - Init
 - (instancetype)init {
     self = [super init];
     if (self) {

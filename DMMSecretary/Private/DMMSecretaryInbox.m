@@ -62,11 +62,18 @@
     for (NSNotification *notification in self.heldNotifications) {
         [self forwardNotification:notification];
     }
+    [self clearHeldNotifications];
+}
+
+- (void)clearHeldNotifications {
     [self.heldNotifications removeAllObjects];
 }
 
+
 #pragma mark - Private
 - (void)addNotification:(DMMSecretaryNotification *)notification {
+    if ([self.notificationNames containsObject:notification]) { return; }
+    
     [self.notificationNames addObject:notification.name];
     [self.notificationObservers addObject:notification];
     
@@ -88,10 +95,6 @@
     if (index >= 0) {
         [self.notificationObservers removeObjectAtIndex:index];
     }
-}
-
-- (void)clearHeldNotifications {
-    [self.heldNotifications removeAllObjects];
 }
 
 #pragma mark - notificationReceived
