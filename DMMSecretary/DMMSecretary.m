@@ -99,16 +99,6 @@
 }
 
 #pragma mark - -- Private --
-
-#pragma mark - Getters
-- (NSMutableDictionary *)inboxes {
-    __block NSMutableDictionary *dict;
-    dispatch_barrier_sync(_secretaryQueue, ^{
-        dict = _inboxes;
-    });
-    return _inboxes;
-}
-
 #pragma mark - Init
 - (instancetype)init {
     self = [super init];
