@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentHeldLabel;
 
 @property (nonatomic) NSInteger totalNumberOfNotificationsReceived;
 @end
@@ -51,8 +52,9 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
         [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:InboxIdentifer];
         [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:InboxIdentifer];
     }
-    
+    [self updateCurrentHeldLabel];
 }
+
 - (IBAction)sendNotificationPressed:(UIButton *)sender {
     NSString *name = NotificationName1;
     if ([sender isEqual:self.sendNotification1Button]) {
@@ -66,11 +68,17 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil];
+    
+    [self updateCurrentHeldLabel];
+}
+
+- (void)updateCurrentHeldLabel {
+    self.currentHeldLabel.text = [NSString stringWithFormat:@"Currently Held: %li", (long)[[DMMSecretary sharedSecretary] notificationsForInbox:InboxIdentifer].count];
 }
 
 - (void)notificationReceived:(NSNotification *)notification {
     self.totalNumberOfNotificationsReceived++;
-    self.totalCountLabel.text = [NSString stringWithFormat:@"%li", (long)self.totalNumberOfNotificationsReceived];
+    self.totalCountLabel.text = [NSString stringWithFormat:@"Total Recieved Notifications: %li", (long)self.totalNumberOfNotificationsReceived];
     self.outputLabel.text = [NSString stringWithFormat:@"Notification Recieved - %@ : %@", notification.name, [NSDate date]];
 }
 

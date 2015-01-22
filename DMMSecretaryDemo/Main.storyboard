@@ -26,7 +26,7 @@
                                     <action selector="sendNotificationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xEL-oQ-cN9"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On3-FE-wXi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On3-FE-wXi">
                                 <rect key="frame" x="36" y="560" width="528" height="19.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -87,9 +87,15 @@
                                     <action selector="sendNotificationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z5T-f3-B0Q"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfJ-st-ywd" userLabel="Total Count Label">
-                                <rect key="frame" x="36" y="532.5" width="528" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Recieved Notifications: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfJ-st-ywd" userLabel="Total Count Label">
+                                <rect key="frame" x="36" y="532" width="528" height="19.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently Held: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFX-dT-ffu" userLabel="Current Held label">
+                                <rect key="frame" x="36" y="503.5" width="528" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -102,7 +108,10 @@
                             <constraint firstItem="b4R-fg-XX9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="I7L-od-h2M"/>
                             <constraint firstItem="rLj-XX-cku" firstAttribute="top" secondItem="b4R-fg-XX9" secondAttribute="bottom" constant="8" id="IzP-BN-e3k"/>
                             <constraint firstItem="CfJ-st-ywd" firstAttribute="leading" secondItem="On3-FE-wXi" secondAttribute="leading" id="LTE-GH-y35"/>
+                            <constraint firstItem="AFX-dT-ffu" firstAttribute="leading" secondItem="CfJ-st-ywd" secondAttribute="leading" id="PNl-to-Ihq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="On3-FE-wXi" secondAttribute="bottom" constant="20" id="Q3o-PG-AMN"/>
+                            <constraint firstItem="CfJ-st-ywd" firstAttribute="top" secondItem="AFX-dT-ffu" secondAttribute="bottom" constant="8.5" id="Upr-Rk-Whb"/>
+                            <constraint firstItem="AFX-dT-ffu" firstAttribute="trailing" secondItem="CfJ-st-ywd" secondAttribute="trailing" id="Vtl-px-Ijb"/>
                             <constraint firstItem="WeC-Mv-P6R" firstAttribute="top" secondItem="98W-Qk-iz3" secondAttribute="bottom" constant="8" id="XQS-x9-WVw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="On3-FE-wXi" secondAttribute="trailing" constant="20" id="ZTS-Ci-BVb"/>
                             <constraint firstAttribute="centerX" secondItem="1Q2-NT-akM" secondAttribute="centerX" id="enM-aV-l92"/>
@@ -125,6 +134,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="currentHeldLabel" destination="AFX-dT-ffu" id="OCb-1v-uZH"/>
                         <outlet property="holdSwitch" destination="mya-Bi-Mht" id="Wad-D3-fag"/>
                         <outlet property="outputLabel" destination="On3-FE-wXi" id="0cM-nC-Ro2"/>
                         <outlet property="sendNotification1Button" destination="b4R-fg-XX9" id="XQY-Nr-d4g"/>
