@@ -84,6 +84,14 @@
         inbox.holdMessages = YES;
     });
 }
+
+- (void)onlyKeepUniqueMessages:(BOOL)onlyUnique forInboxIdentifier:(NSString *)inboxIdentifier {
+    dispatch_barrier_sync(_secretaryQueue, ^{
+        DMMSecretaryInbox *inbox = self.inboxes[inboxIdentifier];
+        inbox.onlyUniqueMessages = onlyUnique;
+    });
+}
+
 - (void)stopHoldingMessagesForInbox:(NSString *)inboxIdentifier {
     dispatch_barrier_sync(_secretaryQueue, ^{
         DMMSecretaryInbox *inbox = self.inboxes[inboxIdentifier];

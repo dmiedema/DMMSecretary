@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendNotification3Button;
 @property (weak, nonatomic) IBOutlet UIButton *sendNotification4Button;
 @property (weak, nonatomic) IBOutlet UISwitch *holdSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *onlyUniqueSwitch;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
@@ -53,6 +54,9 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
         [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:InboxIdentifer];
     }
     [self updateCurrentHeldLabel];
+}
+- (IBAction)onlyUniqueSwitchToggled:(UISwitch *)sender {
+    [[DMMSecretary sharedSecretary] onlyKeepUniqueMessages:sender.on forInboxIdentifier:InboxIdentifer];
 }
 
 - (IBAction)sendNotificationPressed:(UIButton *)sender {

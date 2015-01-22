@@ -24,6 +24,8 @@
 @property (nonatomic, readonly) NSArray *observedNotificationNames;
 /// @c YES if inbox has been asked to hold notifications in the inbox. @c NO otherwise
 @property (nonatomic, getter=isHoldingMessages) BOOL holdMessages;
+///
+@property (nonatomic) BOOL onlyUniqueMessages;
 
 #pragma mark - Class Methods
 /*!

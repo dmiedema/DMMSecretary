@@ -100,6 +100,11 @@
 #pragma mark - notificationReceived
 - (void)notificationReceived:(NSNotification *)notification {
     if (self.isHoldingMessages) {
+        if (self.onlyUniqueMessages) {
+            if ([[self.heldNotifications valueForKeyPath:@"name"] containsObject:notification.name]) {
+                return;
+            }
+        }
         [self.heldNotifications addObject:notification];
     } else {
         [self forwardNotification:notification];

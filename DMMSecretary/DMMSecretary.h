@@ -83,6 +83,14 @@
 - (void)startHoldingMessagesForInbox:(NSString *)inboxIdentifier __attribute__((nonnull (1)));
 
 /*!
+ Ask the secretary to start holding messages.
+ 
+ @param onlyUnique     Only keep unique instances of each message. Default value is @c NO
+ @param inboxIdentifer inbox to start holding messages for
+ */
+- (void)onlyKeepUniqueMessages:(BOOL)onlyUnique forInboxIdentifier:(NSString *)inboxIdentifier __attribute__((nonnull (2)));
+
+/*!
  Ask the secretary to stop holding messages.
  
  @param inboxIdentifer inbox to stop holding messages for

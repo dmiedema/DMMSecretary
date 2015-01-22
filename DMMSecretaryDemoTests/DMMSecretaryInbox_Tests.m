@@ -78,6 +78,22 @@ void AddTestNotificationToInbox(DMMSecretaryInbox *inbox) {
     
 }
 
+- (void)testOnlyKeepingUnique {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+    
+    [self.inbox addNotificationToNotifications:[DMMSecretaryNotification secretaryNotificationWithObserver:mock selector:@selector(testMethod) name:TestNotification object:nil]];
+    [[mock expect] testMethod];
+    
+    self.inbox.holdMessages = YES;
+    self.inbox.onlyUniqueMessages = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    
+    NSArray *heldNotifications = [self.inbox valueForKey:@"heldNotifications"];
+    XCTAssertTrue(heldNotifications.count == 1, @"held notifications should only have 1 item. Instead had %li", heldNotifications.count);
+}
+
 #pragma mark - Setup
 - (void)setUp {
     [super setUp];

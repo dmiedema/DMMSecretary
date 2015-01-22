@@ -81,6 +81,24 @@
     XCTAssertThrows([mock verify], @"mock should not have received %@", TestNotification);
 }
 
+- (void)testOnlyHoldsUniques {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+    
+    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+    
+    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
+    [[DMMSecretary sharedSecretary] onlyKeepUniqueMessages:YES forInboxIdentifier:TestInbox];
+    [[mock expect] testMethod];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    
+    NSArray *heldNotifications = [[DMMSecretary sharedSecretary] notificationsForInbox:TestInbox];
+    
+    XCTAssertTrue(heldNotifications.count == 1, @"heldNotifications should only have 1 item. Instead had %li", heldNotifications.count);
+}
+
 - (void)testStopsHoldingNotifications {
     id mock = [OCMockObject mockForClass:TestObject.class];
     
