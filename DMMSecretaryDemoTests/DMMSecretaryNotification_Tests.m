@@ -41,8 +41,10 @@
 #pragma clang diagnostic pop
 }
 
-- (void)testCallingInitDirectlyThrowsExpection {
-    XCTAssertThrows([[DMMSecretaryNotification alloc] init], @"Calling init on DMMSecretaryNotification should throw an exception");
+- (void)testCallingInitDirectlyThrowsExpectionAndReturnsNil {
+    DMMSecretaryNotification *notification;
+    XCTAssertThrows((notification = [[DMMSecretaryNotification alloc] init]), @"Calling init on DMMSecretaryNotification should throw an exception");
+    XCTAssertNil(notification, @"Returned object should be nil");
 }
 
 

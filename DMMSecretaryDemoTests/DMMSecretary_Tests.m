@@ -41,6 +41,13 @@
     XCTAssertFalse([inboxes.allKeys containsObject:TestInbox], @"inboxes should not contain key for %@", TestInbox);
 }
 
+- (void)testPrivateQueueExists {
+    dispatch_queue_t queue = [[DMMSecretary sharedSecretary] valueForKey:@"_secretaryQueue"];
+    NSString *queueLabel = [NSString stringWithUTF8String:dispatch_queue_get_label(queue)];
+    
+    XCTAssertTrue([queueLabel isEqualToString:@"DMMSecretaryQueue"], @"Queue label should equal 'DMMSecretaryQueue'. Instead was %@", queueLabel);
+}
+
 - (void)testKeepsTrackOfObservedNotifications {
     [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
     
