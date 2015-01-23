@@ -34,6 +34,13 @@
     XCTAssertTrue([inboxes.allKeys containsObject:TestInbox], @"inboxes should contain key for %@", TestInbox);
 }
 
+- (void)testRemovesInbox {
+    [[DMMSecretary sharedSecretary] removeInbox:TestInbox];
+    NSDictionary *inboxes = [[DMMSecretary sharedSecretary] valueForKey:@"inboxes"];
+    
+    XCTAssertFalse([inboxes.allKeys containsObject:TestInbox], @"inboxes should not contain key for %@", TestInbox);
+}
+
 - (void)testKeepsTrackOfObservedNotifications {
     [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
     

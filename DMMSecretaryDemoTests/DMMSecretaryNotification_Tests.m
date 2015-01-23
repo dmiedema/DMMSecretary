@@ -41,6 +41,10 @@
 #pragma clang diagnostic pop
 }
 
+- (void)testCallingInitDirectlyThrowsExpection {
+    XCTAssertThrows([[DMMSecretaryNotification alloc] init], @"Calling init on DMMSecretaryNotification should throw an exception");
+}
+
 
 #pragma mark - Setup
 - (void)setUp {
