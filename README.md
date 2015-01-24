@@ -50,6 +50,19 @@ To ask the secretary to stop holding our notifications we can call
 [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:@"UniqueInboxIdentifier"];
 ```
 
+## Generating Code Coverage Report
+
+Since I haven't figured out how to automate the process of generating code coverage to have a cool badge, its currently a manual process.
+
+Code coverage report currently uses http://frankencover.it which has instructions more or less explaining how I set this all up.
+
+To generate code coverage reports just run 
+
+```sh
+$ scripts/generateCodeCoverage.sh DMMSecretary
+``` 
+from within the root of the project.
+
 
 ## License
 
