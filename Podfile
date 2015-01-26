@@ -8,6 +8,6 @@ target 'DMMSecretaryDemo' do
 end
 
 target 'DMMSecretaryDemoTests' do
-  pod 'OCMock'
+  pod 'OCMock', '~> 3.1.0'
 end
 
