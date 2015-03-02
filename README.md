@@ -53,9 +53,9 @@ To ask the secretary to stop holding our notifications we can call
 
 ## Generating Code Coverage Report
 
-Since I haven't figured out how to automate the process of generating code coverage to have a cool badge, its currently a manual process.
+~~Since I haven't figured out how to automate the process of generating code coverage to have a cool badge, its currently a manual process.~~ [Slather](https://github.com/venmo/slather) & [coveralls](https://coveralls.io) are currently used for automated coverage reporting.
 
-Code coverage report currently uses http://frankencover.it which has instructions more or less explaining how I set this all up.
+Local code coverage reports currently uses http://frankencover.it which has instructions more or less explaining how I set this all up.
 
 To generate code coverage reports just run 
 
