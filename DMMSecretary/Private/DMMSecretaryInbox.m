@@ -101,8 +101,9 @@
 - (void)notificationReceived:(NSNotification *)notification {
     if (self.isHoldingMessages) {
         if (self.onlyUniqueMessages) {
-            if ([[self.heldNotifications valueForKeyPath:@"name"] containsObject:notification.name]) {
-                return;
+            NSUInteger indexOfNotification = [[self.heldNotifications valueForKeyPath:@"name"] indexOfObject:notification.name];
+            if (indexOfNotification != NSNotFound) {
+                [self.heldNotifications removeObjectAtIndex:indexOfNotification];
             }
         }
         [self.heldNotifications addObject:notification];
@@ -112,22 +113,6 @@
 }
 
 - (void)forwardNotification:(NSNotification *)notification {
-//    NSArray *notificationObservers = [self.notificationObservers copy];
-//    
-//    for (NSInteger i = 0; i < notificationObservers.count; i++) {
-//        dispatch_async(_inboxQueue, ^{
-//            DMMSecretaryNotification *obj = notificationObservers[i];
-//            if ([obj.name isEqualToString:notification.name]) {
-//                #pragma clang diagnostic push
-//                #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [obj.observer performSelector:obj.selector withObject:notification];
-//                });
-//                #pragma clang diagnostic pop
-//            }
-//        });
-//    }
-    
     [self.notificationObservers enumerateObjectsUsingBlock:^(DMMSecretaryNotification *obj, NSUInteger idx, BOOL *stop) {
         if ([obj.name isEqualToString:notification.name]) {
 #pragma clang diagnostic push

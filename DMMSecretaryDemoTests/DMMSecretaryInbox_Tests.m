@@ -94,6 +94,35 @@ void AddTestNotificationToInbox(DMMSecretaryInbox *inbox) {
     XCTAssertTrue(heldNotifications.count == 1, @"held notifications should only have 1 item. Instead had %li", heldNotifications.count);
 }
 
+- (void)testWhenKeepingUniqueOrderIsMaintained {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+    NSString *AnotherTestNotification = @"AnotherNotification";
+
+    [self.inbox addNotificationToNotifications:[DMMSecretaryNotification secretaryNotificationWithObserver:mock selector:@selector(testMethod) name:TestNotification object:nil]];
+    [self.inbox addNotificationToNotifications:[DMMSecretaryNotification secretaryNotificationWithObserver:mock selector:@selector(testMethod) name:AnotherTestNotification object:nil]];
+    [[mock expect] testMethod];
+
+    self.inbox.holdMessages = YES;
+    self.inbox.onlyUniqueMessages = YES;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AnotherTestNotification object:nil];
+
+    NSArray *heldNotifications = [self.inbox valueForKey:@"heldNotifications"];
+
+    XCTAssertTrue([[heldNotifications.firstObject name] isEqualToString:TestNotification], @"TestNotification should be first object since it was received first");
+    XCTAssertTrue([[heldNotifications.lastObject name] isEqualToString:AnotherTestNotification], @"AnotherTestNotification should be last since it was received second.");
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+
+    // Update to get current values
+    heldNotifications = [self.inbox valueForKey:@"heldNotifications"];
+
+    XCTAssertTrue(heldNotifications.count == 2, @"%li notifications. There should only be 2.", (long)heldNotifications.count);
+    XCTAssertTrue([[heldNotifications.firstObject name] isEqualToString:AnotherTestNotification], @"AnotherTestNotification should now be first");
+    XCTAssertTrue([[heldNotifications.lastObject name] isEqualToString:TestNotification], @"TestNotification should be last since it was most recent notification");
+}
+
 #pragma mark - Setup
 - (void)setUp {
     [super setUp];
