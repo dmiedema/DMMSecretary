@@ -4,6 +4,8 @@ DMMSecretary
 [![Build Status](https://travis-ci.org/dmiedema/DMMSecretary.svg?branch=master)](https://travis-ci.org/dmiedema/DMMSecretary)
 [![Coverage Status](https://coveralls.io/repos/dmiedema/DMMSecretary/badge.svg?branch=master)](https://coveralls.io/r/dmiedema/DMMSecretary?branch=master)
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 [![Version](https://img.shields.io/cocoapods/v/DMMSecretary.svg?style=flat)](http://cocoadocs.org/docsets/DMMSecretary)
 [![License](https://img.shields.io/cocoapods/l/DMMSecretary.svg?style=flat)](http://cocoadocs.org/docsets/DMMSecretary)
 [![Platform](https://img.shields.io/cocoapods/p/DMMSecretary.svg?style=flat)](http://cocoadocs.org/docsets/DMMSecretary)
