@@ -29,13 +29,13 @@ DMMSecretaryNotification *notification = [DMMSecretaryNotification secretaryNoti
 That will create you an inbox & set you up to receive notifications. No different than registering with `[NSNotificationCenter defaultCenter]`
 
 ```objc
-[[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:@"UniqueInboxIdentifier"];
+[DMMSecretary startHoldingMessagesForInbox:@"UniqueInboxIdentifier"];
 ```
 
 Maybe we only care about a single copy of a notification instead of receiving a possible flood of `UIKeyboardDidShowNotification` for example. Simply run
 
 ```objc
-[[DMMSecretary sharedSecretary] onlyKeepUniqueMessages:YES forInboxIdentifier:@"UniqueInboxIdentifier"];
+[DMMSecretary onlyKeepUniqueMessages:YES forInboxIdentifier:@"UniqueInboxIdentifier"];
 ```
 
 
@@ -44,13 +44,13 @@ Now, if 'NotificationNameIWant' happens we won't receive it, the secretary is ho
 When we _do_ want our notifications forwarded to us, we can just call
 
 ```objc
-[[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:@"UniqueInboxIdentifier"];
+[DMMSecretary sendHeldNotificationsForInbox:@"UniqueInboxIdentifier"];
 ```
 
 To ask the secretary to stop holding our notifications we can call
 
 ```objc
-[[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:@"UniqueInboxIdentifier"];
+[DMMSecretary stopHoldingMessagesForInbox:@"UniqueInboxIdentifier"];
 ```
 
 ## Generating Code Coverage Report
