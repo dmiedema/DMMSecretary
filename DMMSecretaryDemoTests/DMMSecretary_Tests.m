@@ -16,7 +16,9 @@
 
 @interface DMMSecretary (Tests)
 - (void)cleanUpSecretary;
++ (instancetype)sharedSecretary;
 @end
+
 @implementation DMMSecretary (Tests)
 - (void)cleanUpSecretary {
     [[DMMSecretary sharedSecretary] setValue:[NSMutableDictionary dictionary] forKey:@"inboxes"];
@@ -35,7 +37,7 @@
 }
 
 - (void)testRemovesInbox {
-    [[DMMSecretary sharedSecretary] removeInbox:TestInbox];
+    [DMMSecretary removeInbox:TestInbox];
     NSDictionary *inboxes = [[DMMSecretary sharedSecretary] valueForKey:@"inboxes"];
     
     XCTAssertFalse([inboxes.allKeys containsObject:TestInbox], @"inboxes should not contain key for %@", TestInbox);
@@ -49,34 +51,34 @@
 }
 
 - (void)testKeepsTrackOfObservedNotifications {
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
     
-    NSArray *observed = [[DMMSecretary sharedSecretary] notificationsObservedByInbox:TestInbox];
+    NSArray *observed = [DMMSecretary notificationsObservedByInbox:TestInbox];
     
     XCTAssertTrue([observed containsObject:TestNotification], @"Observed notifications for %@ should contain %@", TestInbox, TestNotification);
 }
 
 - (void)testRemovesNotificationsFromInboxes {
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] removeNotification:TestNotification fromInbox:TestInbox];
+    [DMMSecretary removeNotification:TestNotification fromInbox:TestInbox];
     
-    NSArray *observed = [[DMMSecretary sharedSecretary] notificationsObservedByInbox:TestInbox];
+    NSArray *observed = [DMMSecretary notificationsObservedByInbox:TestInbox];
     XCTAssertTrue(observed.count == 0, @"Observed notifications should be empty after removing %@", TestNotification);
 }
 
 - (void)testHoldsReceivedNotifications {
     id mock = [OCMockObject mockForClass:TestObject.class];
     
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
     
-    NSArray *held = [[DMMSecretary sharedSecretary] notificationsForInbox:TestInbox];
+    NSArray *held = [DMMSecretary notificationsForInbox:TestInbox];
     XCTAssertTrue(held.count > 0, @"Notifications for inbox should have more than 0 items.");
     XCTAssertTrue([held.firstObject isKindOfClass:NSNotification.class], @"Held item should be of type NSNotification. Was type %@", NSStringFromClass(held.class));
 }
@@ -84,9 +86,9 @@
 - (void)testHoldsNotifications {
     id mock = [OCMockObject mockForClass:TestObject.class];
     
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
@@ -98,17 +100,17 @@
 - (void)testOnlyHoldsUniques {
     id mock = [OCMockObject mockForClass:TestObject.class];
     
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
-    [[DMMSecretary sharedSecretary] onlyKeepUniqueMessages:YES forInboxIdentifier:TestInbox];
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
+    [DMMSecretary onlyKeepUniqueMessages:YES forInboxIdentifier:TestInbox];
     [[mock expect] testMethod];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
     
-    NSArray *heldNotifications = [[DMMSecretary sharedSecretary] notificationsForInbox:TestInbox];
+    NSArray *heldNotifications = [DMMSecretary notificationsForInbox:TestInbox];
     
     XCTAssertTrue(heldNotifications.count == 1, @"heldNotifications should only have 1 item. Instead had %li", heldNotifications.count);
 }
@@ -116,9 +118,9 @@
 - (void)testStopsHoldingNotifications {
     id mock = [OCMockObject mockForClass:TestObject.class];
     
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
@@ -126,7 +128,7 @@
     
     XCTAssertThrows([mock verify], @"mock should not have received %@", TestNotification);
     
-    [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:TestInbox];
+    [DMMSecretary stopHoldingMessagesForInbox:TestInbox];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
 
@@ -137,9 +139,9 @@
 - (void)testPassesHeldNotifications {
     id mock = [OCMockObject mockForClass:TestObject.class];
     
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:TestInbox];
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
     
     [[mock expect] testMethod];
     
@@ -147,25 +149,84 @@
     
     XCTAssertThrows([mock verify], @"mock should not have received %@", TestNotification);
     
-    [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:TestInbox];
+    [DMMSecretary sendHeldNotificationsForInbox:TestInbox];
     
     XCTAssertNoThrow([mock verify], @"mock should have received %@ after turning off holding", TestNotification);
 }
 
 - (void)testCreatingExistingInbox {
-    [[DMMSecretary sharedSecretary] addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
+    [DMMSecretary addNotification:CreateTestNotification(self.obj) toInbox:TestInbox];
     
-    [[DMMSecretary sharedSecretary] createInbox:TestInbox notifications:@[]];
+    [DMMSecretary createInbox:TestInbox notifications:@[]];
     
-    NSArray *observed = [[DMMSecretary sharedSecretary] notificationsObservedByInbox:TestInbox];
+    NSArray *observed = [DMMSecretary notificationsObservedByInbox:TestInbox];
     XCTAssertTrue(observed.count > 0, @"Creating an inbox that already exists should not overwrite existing inbox");
+}
+
+- (void)testDroppingAllNotifications {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+
+    [DMMSecretary dropAllHeldNotificationsForInbox:TestInbox];
+
+    XCTAssertNoThrow([mock verify], @"mock should not have received %@ after dropping all notifications", TestNotification);
+}
+
+- (void)testDroppingNotificationsByName {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+    id anotherMock = [OCMockObject mockForClass:TestObject.class];
+
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+
+    [DMMSecretary addNotification:[DMMSecretaryNotification secretaryNotificationWithObserver:anotherMock selector:@selector(anotherTestMethod) name:AnotherTestNotification object:nil] toInbox:TestInbox];
+
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AnotherTestNotification object:nil];
+
+    [[mock expect] testMethod];
+    [[anotherMock expect] anotherTestMethod];
+
+    [DMMSecretary dropAllHeldNotifications:AnotherTestNotification forInboxIdentifier:TestInbox];
+    [DMMSecretary sendHeldNotificationsForInbox:TestInbox];
+
+    XCTAssertNoThrow([mock verify], @"mock should have received %@", TestNotification);
+
+    XCTAssertThrows([anotherMock verify], @"anotherMock should have not received %@ after dropping '%@' notificiations", AnotherTestNotification, AnotherTestNotification);
+}
+
+- (void)testChangingObserver {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+    id anotherMock = [OCMockObject mockForClass:TestObject.class];
+
+    [DMMSecretary addNotification:CreateTestNotification(mock) toInbox:TestInbox];
+
+    [DMMSecretary startHoldingMessagesForInbox:TestInbox];
+
+    [[mock expect] testMethod];
+    [[anotherMock expect] testMethod];
+
+    [DMMSecretary changeObserverTo:anotherMock forNotification:TestNotification inInbox:TestInbox];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+    [DMMSecretary sendHeldNotificationsForInbox:TestInbox];
+
+    XCTAssertThrows([mock verify], @"mock should have not have received %@", TestNotification);
+
+    XCTAssertNoThrow([anotherMock verify], @"anotherMock should have received %@", AnotherTestNotification);
 }
 
 #pragma mark - Setup
 - (void)setUp {
     self.obj = [TestObject new];
     
-    [[DMMSecretary sharedSecretary] createInbox:TestInbox notifications:@[]];
+    [DMMSecretary createInbox:TestInbox notifications:@[]];
     
     [super setUp];
 }

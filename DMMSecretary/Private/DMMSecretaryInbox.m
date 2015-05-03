@@ -12,12 +12,9 @@
 @interface DMMSecretaryInbox()
 @property (strong, nonatomic) NSMutableArray *notificationNames;
 @property (strong, nonatomic) NSMutableArray *heldNotifications;
-@property (strong, nonatomic) NSMutableArray *notificationObservers;
 @end
 
-@implementation DMMSecretaryInbox {
-    dispatch_queue_t _inboxQueue;
-}
+@implementation DMMSecretaryInbox
 
 #pragma mark - Class Methods
 + (instancetype)inboxWithIdentifier:(NSString *)identifer {
@@ -33,7 +30,6 @@
         self.notificationNames     = [NSMutableArray array];
         self.heldNotifications     = [NSMutableArray array];
         self.notificationObservers = [NSMutableArray array];
-        _inboxQueue = dispatch_queue_create("DMMInboxQueue", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
@@ -67,6 +63,10 @@
 
 - (void)clearHeldNotifications {
     [self.heldNotifications removeAllObjects];
+}
+
+- (void)clearHeldNotificationsByName:(NSString *)notificationName {
+    self.heldNotifications = [[self.heldNotifications filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name != %@", notificationName]] mutableCopy];
 }
 
 

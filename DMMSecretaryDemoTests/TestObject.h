@@ -11,9 +11,11 @@
 
 extern NSString * const TestInbox;
 extern NSString * const TestNotification;
+extern NSString * const AnotherTestNotification;
 
 DMMSecretaryNotification * CreateTestNotification(TestObject *obj);
 
 @interface TestObject : NSObject
 - (void)testMethod;
+- (void)anotherTestMethod;
 @end

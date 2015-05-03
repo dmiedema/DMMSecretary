@@ -11,6 +11,7 @@
 
 NSString * const TestInbox = @"Inbox";
 NSString * const TestNotification = @"Notifcation";
+NSString * const AnotherTestNotification = @"AnotherTestNotification";
 
 DMMSecretaryNotification * CreateTestNotification(TestObject *obj) {
     return [DMMSecretaryNotification secretaryNotificationWithObserver:obj selector:@selector(testMethod) name:TestNotification object:nil];
@@ -18,5 +19,10 @@ DMMSecretaryNotification * CreateTestNotification(TestObject *obj) {
 
 
 @implementation TestObject
-- (void)testMethod {}
+- (void)testMethod {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+- (void)anotherTestMethod {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 @end
