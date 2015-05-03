@@ -23,7 +23,7 @@ Let's say there is a notification you're interested in but for some reason you w
 
 ```objc
 DMMSecretaryNotification *notification = [DMMSecretaryNotification secretaryNotificaionWithObserver:self selector:@selector(someMethod:) name:@"NotificationNameIWant" object:nil];
-[[DMMSecretary sharedSecretary] createInbox:@"UniqueInboxIdentifier" notifications:@[notification]];
+[DMMSecretary createInbox:@"UniqueInboxIdentifier" notifications:@[notification]];
 ```
 
 That will create you an inbox & set you up to receive notifications. No different than registering with `[NSNotificationCenter defaultCenter]`
