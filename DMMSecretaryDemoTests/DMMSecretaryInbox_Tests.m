@@ -94,6 +94,19 @@ void AddTestNotificationToInbox(DMMSecretaryInbox *inbox) {
     XCTAssertTrue(heldNotifications.count == 1, @"held notifications should only have 1 item. Instead had %li", heldNotifications.count);
 }
 
+- (void)testClearningByName {
+    id mock = [OCMockObject mockForClass:TestObject.class];
+
+    [self.inbox addNotificationToNotifications:[DMMSecretaryNotification secretaryNotificationWithObserver:mock selector:@selector(testMethod) name:TestNotification object:nil]];
+    self.inbox.holdMessages = YES;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TestNotification object:nil];
+
+    [self.inbox clearHeldNotificationsByName:TestNotification];
+
+    XCTAssertNoThrow([mock verify], @"Notification for name '%@' should have been removed and not fowarded to object", TestNotification);
+}
+
 - (void)testWhenKeepingUniqueOrderIsMaintained {
     id mock = [OCMockObject mockForClass:TestObject.class];
     NSString *AnotherTestNotification = @"AnotherNotification";

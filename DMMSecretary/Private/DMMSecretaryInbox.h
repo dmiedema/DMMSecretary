@@ -20,6 +20,8 @@
 @property (copy, nonatomic) NSString *identifier;
 /// Currently held @c NSNotification objects
 @property (nonatomic, readonly) NSArray *notifications;
+/// Notification Observers. Changing/manpulating this can be dangerous. 0/10, would not recommend.
+@property (strong, nonatomic) NSMutableArray *notificationObservers;
 /// Currently observed notification names
 @property (nonatomic, readonly) NSArray *observedNotificationNames;
 /// @c YES if inbox has been asked to hold notifications in the inbox. @c NO otherwise
@@ -58,4 +60,12 @@
  Remove all held notifications from the inbox
  */
 - (void)clearHeldNotifications;
+
+/*!
+ Remove all held notifications for by notification name
+ 
+ @param notificationName @c NSString notification name to remove from current list of held notifiations
+ */
+- (void)clearHeldNotificationsByName:(NSString *)notificationName;
+
 @end

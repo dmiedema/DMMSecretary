@@ -41,22 +41,22 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
     DMMSecretaryNotification *notification3 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName3 object:nil];
     DMMSecretaryNotification *notification4 = [DMMSecretaryNotification secretaryNotificationWithObserver:self selector:@selector(notificationReceived:) name:NotificationName4 object:nil];
     
-    [[DMMSecretary sharedSecretary] createInbox:InboxIdentifer notifications:@[notification1, notification2, notification3, notification4]];
+    [DMMSecretary createInbox:InboxIdentifer notifications:@[notification1, notification2, notification3, notification4]];
 }
 
 - (IBAction)holdSwitchToggled:(UISwitch *)sender {
     if (sender.on) {
-        [[DMMSecretary sharedSecretary] startHoldingMessagesForInbox:InboxIdentifer];
+        [DMMSecretary startHoldingMessagesForInbox:InboxIdentifer];
     } else {
-        NSLog(@"%@", [[DMMSecretary sharedSecretary] notificationsObservedByInbox:InboxIdentifer]);
-        NSLog(@"Held - %@", [[DMMSecretary sharedSecretary] notificationsForInbox:InboxIdentifer]);
-        [[DMMSecretary sharedSecretary] stopHoldingMessagesForInbox:InboxIdentifer];
-        [[DMMSecretary sharedSecretary] sendHeldNotificationsForInbox:InboxIdentifer];
+        NSLog(@"%@", [DMMSecretary notificationsObservedByInbox:InboxIdentifer]);
+        NSLog(@"Held - %@", [DMMSecretary notificationsForInbox:InboxIdentifer]);
+        [DMMSecretary stopHoldingMessagesForInbox:InboxIdentifer];
+        [DMMSecretary sendHeldNotificationsForInbox:InboxIdentifer];
     }
     [self updateCurrentHeldLabel];
 }
 - (IBAction)onlyUniqueSwitchToggled:(UISwitch *)sender {
-    [[DMMSecretary sharedSecretary] onlyKeepUniqueMessages:sender.on forInboxIdentifier:InboxIdentifer];
+    [DMMSecretary onlyKeepUniqueMessages:sender.on forInboxIdentifier:InboxIdentifer];
 }
 
 - (IBAction)sendNotificationPressed:(UIButton *)sender {
@@ -77,7 +77,7 @@ NSString * const NotificationName4 = @"SecretaryNotificationType4";
 }
 
 - (void)updateCurrentHeldLabel {
-    self.currentHeldLabel.text = [NSString stringWithFormat:@"Currently Held: %li", (long)[[DMMSecretary sharedSecretary] notificationsForInbox:InboxIdentifer].count];
+    self.currentHeldLabel.text = [NSString stringWithFormat:@"Currently Held: %li", (long)[DMMSecretary notificationsForInbox:InboxIdentifer].count];
 }
 
 - (void)notificationReceived:(NSNotification *)notification {
